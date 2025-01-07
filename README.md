@@ -1,66 +1,62 @@
-# PyDBKP
+# PyDBKP  
 
-Python script for backing up all your MySQL databases to Google Drive.
+Python script for backing up all your MySQL databases to Google Drive.  
 
-## Requirements
+## Requirements  
 
-- **Operating System:** The script is designed to run on **Linux** only;
+Before starting, ensure you meet the following requirements:  
 
-- **Python Version:** Requires **Python 3** to be installed on your system;
+- The script is designed to run on **Linux** only;  
+- Requires **Python 3** or later;  
+- Requires **MySQL** and **mysqldump**.  
 
-- **MySQL Tools:** The script depends on `mysqldump`, which must be installed and 
-accessible from the command line;
+## Google Drive  
 
-- **Google Drive API:**
-    - Ensure the Google Drive API is enabled for your account;
-    - You must provide a credentials file (`client_secrets.json`) to authenticate 
-    with the Google Drive API.
+Before setting up Google Drive, run the following commands:  
 
-- **Google Drive Folder Configuration:**
-    - You need to specify the ID of the Google Drive folder where backups will 
-    be stored;
-    - Set the folder ID in the `FOLDER_ID` variable in the `.env` file.
+```bash
+# Clone the repository  
+git clone repo_url  
 
-    Example of `.env` file configuration:
-    ```dotenv
-    FOLDER_ID = your_google_drive_folder_id
-    ```
+# Create a Python virtual environment  
+python3 -m venv venv  
 
-- **Authentication:** 
-    - You need to configure a `.my.cnf` file in the project root directory with the MySQL 
-    username and password for authentication.
-    
-    Example of `.my.cnf` configuration:
-    ```ini
-    [mysqldump]
-    user=your_mysql_user
-    password=your_mysql_password
-    ```
+# Activate the virtual environment  
+source venv/bin/activate  
 
-## Installation
+# Install the dependencies  
+pip install -r requirements.txt  
+```  
 
-1. **Clone the repository:**
-    - Clone the repository by using `git clone` command;
-    - Extract the files to a directory of your choice.
+After executing the commands above, you can proceed with the setup:  
 
-    Exemple cloning repository:
-    ```
-    git clone repository_url
-   ```
+- Create a project on **Google Cloud Console**;  
+- Enable the Google Drive API on the **Enabled APIs and Services** page;  
+- Create credentials on the **Credentials** page;  
+- Set up the OAuth permissions on the **OAuth Consent Screen** page;  
+- Download the OAuth client as a JSON file from the **Credentials** page;  
+- Rename the JSON file to **client_secrets.json** and place it in the project root.  
 
-3. **Create Python virtual environment:**
-    - Open a terminal and navigate to the project root directory;
-    - Use `python3 -m venv venv` to create the environment;
-    - Use `source venv/bin/activate` to access the environment. 
+## Environment File  
 
-2. **Install dependencies:**
-    - Open a terminal and navigate to the project root directory;
-    - Ensure the Python virtual environment is activated;
-    - Use `pip` to install the required Python libraries listed in `requirements.txt`. 
+This file contains the necessary values for the script to make backups and send emails:  
 
-    Example installing dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
+- Make a copy of the **.env.example** file and save it as **.env**;  
+- Set the app name in the **APP_NAME** variable;  
+- Create a folder on Google Drive to store the backups;  
+- Get the folder ID and store it in the **FOLDER_ID** variable;  
+- Set the email receiver and sender in the **RECIEVER_EMAIL** and **SENDER_EMAIL** variables;  
+- Generate an app password for the sender email and store it in the **SENDER_EMAIL_PASSWD** variable.  
 
-After finishing the above steps you are ready to backup all your databases by using `python main.py` manually or you can add the script to cron.
+## MySQL Configuration File  
+
+This file contains the values required for the script to access the database:  
+
+- Locate the **.my.cnf** file;  
+- Update the **user** and **password** keys with your values.  
+
+After completing the steps above, you are ready to back up all your databases by running `python main.py` manually or by adding the script to a cron job.  
+
+## Author  
+
+João Faust  
