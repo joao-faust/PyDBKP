@@ -1,13 +1,15 @@
 from os import path
 from datetime import datetime
 
+from settings import BASE_DIR
+
 
 class LoggerConfig:
 
     def __init__(self):
         self.__dirname = 'logs'
         self.__filename = 'app'
-        self.__fullpath = path.join(self.__dirname, self.__filename + '.log')
+        self.__fullpath = path.join(BASE_DIR, self.__dirname, self.__filename + '.log')
 
     def getFullpath(self):
         return self.__fullpath

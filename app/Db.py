@@ -4,6 +4,7 @@ from datetime import datetime
 
 from app.Logger import LoggerConfig
 from app.Email import Email
+from settings import BASE_DIR
 
 
 class Db:
@@ -17,7 +18,8 @@ class Db:
         return self.__bkpFilename
         
     def makeDumpFile(self):
-        cmd = f'mysqldump --defaults-file=.my.cnf --all-databases | gzip > \
+        myCnfFilePath = path.join(BASE_DIR, '.my.cnf')
+        cmd = f'mysqldump --defaults-file={myCnfFilePath} --all-databases | gzip > \
             {self.__bkpFilename}'
         
         try:
