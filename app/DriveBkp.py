@@ -1,18 +1,18 @@
 from pydrive.drive import GoogleDrive
 from sys import exit
-from os import getenv
 from datetime import datetime
 
 from app.Db import Db
 from app.Logger import LoggerConfig
 from app.Email import Email
+from settings import FOLDER_ID
 
 
 class DriveBkp:
 
     def __init__(self, drive: GoogleDrive):
         self.__drive = drive
-        self.__folderId = str(getenv('FOLDER_ID'))
+        self.__folderId = FOLDER_ID
         self.__db = Db()
         self.__logger = LoggerConfig()
         self.__email = Email()

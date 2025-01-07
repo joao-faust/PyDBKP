@@ -1,16 +1,17 @@
 from smtplib import SMTP
-from os import getenv
 
 from app.Logger import LoggerConfig
+from settings import (SENDER_EMAIL, SENDER_EMAIL_PASSWD, RECIEVER_EMAIL,
+                      APP_NAME)
 
 
 class Email:
 
     def __init__(self):
-        self.__sender = str(getenv('SENDER_EMAIL'))
-        self.__senderPasswd = str(getenv('SENDER_EMAIL_PASSWD'))
-        self.__reciever = str(getenv('RECIEVER_EMAIL'))
-        self.__appName = str(getenv('APP_NAME'))
+        self.__sender = SENDER_EMAIL
+        self.__senderPasswd = SENDER_EMAIL_PASSWD
+        self.__reciever = RECIEVER_EMAIL
+        self.__appName = APP_NAME
         self.__host = 'smtp.gmail.com'
         self.__port = 587
         self.__logger = LoggerConfig()
